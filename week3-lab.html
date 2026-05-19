@@ -71,7 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="week3-lab_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="week3-lab_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="week3-lab_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="week3-lab_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="week3-lab_files/libs/bootstrap/bootstrap-efbb37e9afcc02144ebbc7afd12a776f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -113,23 +113,25 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#jun-lum" id="toc-jun-lum" class="nav-link active" data-scroll-target="#jun-lum"><span class="header-section-number">0.1</span> Jun Lum</a></li>
-  <li><a href="#ben" id="toc-ben" class="nav-link" data-scroll-target="#ben"><span class="header-section-number">0.2</span> Ben</a></li>
-  <li><a href="#zen" id="toc-zen" class="nav-link" data-scroll-target="#zen"><span class="header-section-number">0.3</span> Zen</a></li>
-  <li><a href="#reporter-summary-team" id="toc-reporter-summary-team" class="nav-link" data-scroll-target="#reporter-summary-team"><span class="header-section-number">0.4</span> Reporter summary (team)</a></li>
-  <li><a href="#import-the-asean-meat-production-data" id="toc-import-the-asean-meat-production-data" class="nav-link" data-scroll-target="#import-the-asean-meat-production-data"><span class="header-section-number">1</span> 3.2 Import the ASEAN Meat Production Data</a></li>
-  <li><a href="#tidy-the-meat-production-data" id="toc-tidy-the-meat-production-data" class="nav-link" data-scroll-target="#tidy-the-meat-production-data"><span class="header-section-number">2</span> 3.3 Tidy the Meat Production Data</a></li>
-  <li><a href="#correct-cambodias-mutton-and-goat-entries" id="toc-correct-cambodias-mutton-and-goat-entries" class="nav-link" data-scroll-target="#correct-cambodias-mutton-and-goat-entries"><span class="header-section-number">3</span> 3.4 Correct Cambodia’s Mutton-and-Goat Entries</a></li>
-  <li><a href="#checkpoint-compare-meat_tidy-to-reference-data" id="toc-checkpoint-compare-meat_tidy-to-reference-data" class="nav-link" data-scroll-target="#checkpoint-compare-meat_tidy-to-reference-data"><span class="header-section-number">4</span> 3.5 Checkpoint: Compare <code>meat_tidy</code> to Reference Data</a></li>
-  <li><a href="#tidy-the-population-data" id="toc-tidy-the-population-data" class="nav-link" data-scroll-target="#tidy-the-population-data"><span class="header-section-number">5</span> 3.6 Tidy the Population Data</a></li>
-  <li><a href="#checkpoint-compare-pop_tidy-to-reference-data" id="toc-checkpoint-compare-pop_tidy-to-reference-data" class="nav-link" data-scroll-target="#checkpoint-compare-pop_tidy-to-reference-data"><span class="header-section-number">6</span> 3.7 Checkpoint: Compare <code>pop_tidy</code> to Reference Data</a></li>
-  <li><a href="#join-meat-production-to-population" id="toc-join-meat-production-to-population" class="nav-link" data-scroll-target="#join-meat-production-to-population"><span class="header-section-number">7</span> 3.8 Join Meat Production to Population</a></li>
-  <li><a href="#derive-per-capita-production" id="toc-derive-per-capita-production" class="nav-link" data-scroll-target="#derive-per-capita-production"><span class="header-section-number">8</span> 3.9 Derive Per-Capita Production</a></li>
-  <li><a href="#checkpoint-compare-merged-to-reference-data" id="toc-checkpoint-compare-merged-to-reference-data" class="nav-link" data-scroll-target="#checkpoint-compare-merged-to-reference-data"><span class="header-section-number">9</span> 3.10 Checkpoint: Compare <code>merged</code> to Reference Data</a></li>
-  <li><a href="#visualize-the-result" id="toc-visualize-the-result" class="nav-link" data-scroll-target="#visualize-the-result"><span class="header-section-number">10</span> 3.11 Visualize the Result</a></li>
-  <li><a href="#comment-on-the-plot" id="toc-comment-on-the-plot" class="nav-link" data-scroll-target="#comment-on-the-plot"><span class="header-section-number">11</span> 3.12 Comment on the Plot</a></li>
-  <li><a href="#reflect-on-ai-use" id="toc-reflect-on-ai-use" class="nav-link" data-scroll-target="#reflect-on-ai-use"><span class="header-section-number">12</span> 4.1 Reflect on AI Use</a></li>
-  <li><a href="#roles-and-contributions" id="toc-roles-and-contributions" class="nav-link" data-scroll-target="#roles-and-contributions"><span class="header-section-number">13</span> 4.2 Roles and Contributions</a></li>
+  <li><a href="#summary-of-team-predictions-sheet-x.14" id="toc-summary-of-team-predictions-sheet-x.14" class="nav-link active" data-scroll-target="#summary-of-team-predictions-sheet-x.14">3.1 Summary of Team Predictions (Sheet X.14)</a>
+  <ul class="collapse">
+  <li><a href="#part-a-b-columns-classes-and-row-counts" id="toc-part-a-b-columns-classes-and-row-counts" class="nav-link" data-scroll-target="#part-a-b-columns-classes-and-row-counts">Part A &amp; B: Columns, Classes, and Row Counts</a></li>
+  <li><a href="#part-c-why-is-sheet-x.14-not-tidy" id="toc-part-c-why-is-sheet-x.14-not-tidy" class="nav-link" data-scroll-target="#part-c-why-is-sheet-x.14-not-tidy">Part C: Why is Sheet X.14 not tidy</a></li>
+  <li><a href="#reporter-summary-team" id="toc-reporter-summary-team" class="nav-link" data-scroll-target="#reporter-summary-team">Reporter summary (team)</a></li>
+  </ul></li>
+  <li><a href="#import-the-asean-meat-production-data" id="toc-import-the-asean-meat-production-data" class="nav-link" data-scroll-target="#import-the-asean-meat-production-data">3.2 Import the ASEAN Meat Production Data</a></li>
+  <li><a href="#tidy-the-meat-production-data" id="toc-tidy-the-meat-production-data" class="nav-link" data-scroll-target="#tidy-the-meat-production-data">3.3 Tidy the Meat Production Data</a></li>
+  <li><a href="#correct-cambodias-mutton-and-goat-entries" id="toc-correct-cambodias-mutton-and-goat-entries" class="nav-link" data-scroll-target="#correct-cambodias-mutton-and-goat-entries">3.4 Correct Cambodia’s Mutton-and-Goat Entries</a></li>
+  <li><a href="#checkpoint-compare-meat_tidy-to-reference-data" id="toc-checkpoint-compare-meat_tidy-to-reference-data" class="nav-link" data-scroll-target="#checkpoint-compare-meat_tidy-to-reference-data">3.5 Checkpoint: Compare <code>meat_tidy</code> to Reference Data</a></li>
+  <li><a href="#tidy-the-population-data" id="toc-tidy-the-population-data" class="nav-link" data-scroll-target="#tidy-the-population-data">3.6 Tidy the Population Data</a></li>
+  <li><a href="#checkpoint-compare-pop_tidy-to-reference-data" id="toc-checkpoint-compare-pop_tidy-to-reference-data" class="nav-link" data-scroll-target="#checkpoint-compare-pop_tidy-to-reference-data">3.7 Checkpoint: Compare <code>pop_tidy</code> to Reference Data</a></li>
+  <li><a href="#join-meat-production-to-population" id="toc-join-meat-production-to-population" class="nav-link" data-scroll-target="#join-meat-production-to-population">3.8 Join Meat Production to Population</a></li>
+  <li><a href="#derive-per-capita-production" id="toc-derive-per-capita-production" class="nav-link" data-scroll-target="#derive-per-capita-production">3.9 Derive Per-Capita Production</a></li>
+  <li><a href="#checkpoint-compare-merged-to-reference-data" id="toc-checkpoint-compare-merged-to-reference-data" class="nav-link" data-scroll-target="#checkpoint-compare-merged-to-reference-data">3.10 Checkpoint: Compare <code>merged</code> to Reference Data</a></li>
+  <li><a href="#visualize-the-result" id="toc-visualize-the-result" class="nav-link" data-scroll-target="#visualize-the-result">3.11 Visualize the Result</a></li>
+  <li><a href="#comment-on-the-plot" id="toc-comment-on-the-plot" class="nav-link" data-scroll-target="#comment-on-the-plot">3.12 Comment on the Plot</a></li>
+  <li><a href="#reflect-on-ai-use" id="toc-reflect-on-ai-use" class="nav-link" data-scroll-target="#reflect-on-ai-use">4.1 Reflect on AI Use</a></li>
+  <li><a href="#roles-and-contributions" id="toc-roles-and-contributions" class="nav-link" data-scroll-target="#roles-and-contributions">4.2 Roles and Contributions</a></li>
   </ul>
 </nav>
 </div>
@@ -159,62 +161,76 @@ window.Quarto = {
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(waldo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="jun-lum" class="level3" data-number="0.1">
-<h3 data-number="0.1" class="anchored" data-anchor-id="jun-lum"><span class="header-section-number">0.1</span> Jun Lum</h3>
-<p>skip = 3</p>
-<ul>
-<li><code>country</code> (character)</li>
-<li><code>animal</code> / animal type (character)</li>
-<li><code>year</code> (numeric)</li>
-<li><code>production</code> (numeric)</li>
-</ul>
-<p><strong>b) Expected number of rows</strong></p>
-<p><span class="math inline">\(10 \text{ countries} \times 4 \text{ years} \times 4 \text{ animal types} = 160\)</span> rows.</p>
-<p><strong>c) Why sheet X.14 is not tidy</strong></p>
-<ul>
-<li>Years are used as a header row (not a <code>year</code> column).</li>
-<li>Country names appear as column headers (not a <code>country</code> column).</li>
-<li>Total rows mix raw data with summary data.</li>
-</ul>
+<section id="summary-of-team-predictions-sheet-x.14" class="level2">
+<h2 class="anchored" data-anchor-id="summary-of-team-predictions-sheet-x.14">3.1 Summary of Team Predictions (Sheet X.14)</h2>
+<p>As the Team Reporter, I have compiled the predictions from Jun Lum, Benjamin, Bryan, and Zen regarding the tidying of sheet X.14.</p>
+<section id="part-a-b-columns-classes-and-row-counts" class="level3">
+<h3 class="anchored" data-anchor-id="part-a-b-columns-classes-and-row-counts">Part A &amp; B: Columns, Classes, and Row Counts</h3>
+<p>The table below summarizes the team’s expectations for the final tidy dataset structure.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Member</th>
+<th style="text-align: left;">Expected Columns &amp; Classes</th>
+<th style="text-align: left;">Expected Rows</th>
+<th style="text-align: left;">Reasoning / Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Jun Lum</strong></td>
+<td style="text-align: left;">Country (Char), Animal Type (Char), Year (Num), Production (Num)</td>
+<td style="text-align: left;">160</td>
+<td style="text-align: left;"><span class="math inline">\(10 \text{ countries} \times 4 \text{ years} \times 4 \text{ animal types}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Benjamin</strong></td>
+<td style="text-align: left;">Country (Char), Animal Type (Char), Year (Num), Production (Num)</td>
+<td style="text-align: left;">160</td>
+<td style="text-align: left;"><span class="math inline">\(10 \text{ countries} \times 4 \text{ years} \times 4 \text{ animal types}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Bryan</strong></td>
+<td style="text-align: left;">Country (Char), Animal Type (Char), Year (Num), Production (Num)</td>
+<td style="text-align: left;">160</td>
+<td style="text-align: left;"><span class="math inline">\(10 \text{ countries} \times 4 \text{ years} \times 4 \text{ animal types}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Zen</strong></td>
+<td style="text-align: left;">Country (Char), Animal Type (Char), Year (Num), Production (Num)</td>
+<td style="text-align: left;">160</td>
+<td style="text-align: left;"><span class="math inline">\(10 \text{ countries} \times 4 \text{ years} \times 4 \text{ animal types}\)</span></td>
+</tr>
+</tbody>
+</table>
+<hr>
 </section>
-<section id="ben" class="level3" data-number="0.2">
-<h3 data-number="0.2" class="anchored" data-anchor-id="ben"><span class="header-section-number">0.2</span> Ben</h3>
-<p><strong>a) Columns and classes</strong> rename(country = 1) %&gt;% select(where(~ !all(is.na(.x)))) %&gt;% mutate(country = str_squish(as.character(country))) %&gt;% filter(!is.na(country), country != ““, country !=”ASEAN”) %&gt;% pivot_longer( cols = -country, names_to = “year”, values_to = “pop” ) %&gt;% mutate( year = as.numeric(year), pop = as.numeric(pop) ) %&gt;% <strong>a) Columns and classes</strong></p>
+<section id="part-c-why-is-sheet-x.14-not-tidy" class="level3">
+<h3 class="anchored" data-anchor-id="part-c-why-is-sheet-x.14-not-tidy">Part C: Why is Sheet X.14 not tidy</h3>
+<p>The team identified several distinct violations of tidy data principles in the current layout:</p>
 <ul>
-<li><code>animal</code> / animal type (character)</li>
-<li><code>year</code> (numeric)</li>
-<li><code>country</code> (character)</li>
-<li><code>production</code> (numeric)</li>
-</ul>
-<p><strong>b) Expected number of rows</strong></p>
-<p><span class="math inline">\(10 \times 4 \times 4 = 160\)</span> rows.</p>
-<p><strong>c) Why sheet X.14 is not tidy</strong></p>
+<li><strong>Structural Misplacement of Variables:</strong>
 <ul>
-<li>Years are used as section labels in rows instead of being stored in a proper <code>year</code> column.</li>
-<li>Animal type is mixed with category headings and totals.</li>
-<li>Missing values are represented using symbols like <code>-</code>.</li>
+<li><strong>Years:</strong> Jun Lum and Zen identified years acting as column headers, whereas ben and Bryan noted that years are serving as section labels/stacked within rows.</li>
+<li><strong>Headers:</strong> Jun Lum noted individual country names are being used as column headers.</li>
+</ul></li>
+<li><strong>Mixing Data Levels (Raw vs.&nbsp;Aggregated):</strong> Jun Lum, Benjamin, and Zen all noted that summary columns/rows (e.g., the <strong>ASEAN total column</strong>) are mixed directly into the raw data.</li>
+<li><strong>Data Quality &amp; Redundancy:</strong>
+<ul>
+<li>Benjamin pointed out that “Poultry” rows contain no data and should be removed entirely.</li>
+<li>Bryan noted that missing values are represented inconsistently using symbols like <code>-</code>.</li>
+</ul></li>
 </ul>
+<hr>
 </section>
-<section id="zen" class="level3" data-number="0.3">
-<h3 data-number="0.3" class="anchored" data-anchor-id="zen"><span class="header-section-number">0.3</span> Zen</h3>
-<p><strong>a) Columns and classes</strong></p>
-<ul>
-<li><code>country</code> (character)</li>
-<li><code>animal</code> / animal type (character)</li>
-<li><code>year</code> (numeric)</li>
-<li><code>production</code> (numeric)</li>
-</ul>
-<p><strong>b) Expected number of rows</strong></p>
-<p><span class="math inline">\(10 \text{ countries} \times 4 \text{ years} \times 4 \text{ animal types} = 160\)</span> rows.</p>
-<p><strong>c) Why sheet X.14 is not tidy</strong></p>
-<ul>
-<li>Years are encoded as column headers rather than values.</li>
-<li>Country names and animal groupings are embedded in the layout rather than explicit variables.</li>
-<li>The sheet includes totals/aggregates alongside raw values.</li>
-</ul>
-</section>
-<section id="reporter-summary-team" class="level3" data-number="0.4">
-<h3 data-number="0.4" class="anchored" data-anchor-id="reporter-summary-team"><span class="header-section-number">0.4</span> Reporter summary (team)</h3>
+<section id="reporter-summary-team" class="level3">
+<h3 class="anchored" data-anchor-id="reporter-summary-team">Reporter summary (team)</h3>
 <ul>
 <li><strong>Agreed tidy variables:</strong> <code>country</code> (character), <code>animal</code> (character), <code>year</code> (numeric), <code>production</code> (numeric).</li>
 <li><strong>Agreed row count:</strong> 160 rows (<span class="math inline">\(10 \times 4 \times 4\)</span>).</li>
@@ -222,39 +238,40 @@ window.Quarto = {
 <li><strong>Discrepancies to resolve during cleaning:</strong> Ben expects poultry to have no data and be removable; others treat poultry as one of the four animal categories required by the task. Bryan notes missing values shown as <code>-</code> in the source.</li>
 </ul>
 </section>
-<section id="import-the-asean-meat-production-data" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="import-the-asean-meat-production-data"><span class="header-section-number">1</span> 3.2 Import the ASEAN Meat Production Data</h2>
+</section>
+<section id="import-the-asean-meat-production-data" class="level2">
+<h2 class="anchored" data-anchor-id="import-the-asean-meat-production-data">3.2 Import the ASEAN Meat Production Data</h2>
 <p>Open <code>ASEAN-Statistical-Yearbook-2023.xlsx</code> and identify the cell range containing the table in sheet <code>X.14</code>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>meat_raw <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">path =</span> <span class="st">"ASEAN-Statistical-Yearbook-2023.xlsx"</span>,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sheet =</span> <span class="st">"X.14"</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">3</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">range =</span> <span class="st">"A4:L36"</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>meat_raw</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 35 × 12
+<pre><code># A tibble: 32 × 12
    `Animal Type`       `Brunei Darussalam` Cambodia Indonesia `Lao PDR` Malaysia
-   &lt;chr&gt;                             &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
- 1 2021                            NA      &lt;NA&gt;           NA      NA       NA   
- 2 Livestock producti…             NA      &lt;NA&gt;           NA      NA       NA   
- 3 Beef and Buffalo M…              4.27   59.5242…      459.     61.3     40.8 
- 4 Pig meat                         0.0314 107.363…      324.    102.     219.  
- 5 Mutton and Goat Me…              0.0709 0             118.      2.83     3.62
- 6 Poultry production               0      0               0       0        0   
- 7 Poultry meat                    31.6    27.7554…     3889.     43.2   1625.  
- 8 Total meat product…             36.0    194.643…     4789.    209.    1889.  
- 9 2020                             0      0               0       0        0   
-10 Livestock producti…              0      0               0       0        0   
-# ℹ 25 more rows
+   &lt;chr&gt;                             &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+ 1 2021                            NA          NA         NA      NA       NA   
+ 2 Livestock producti…             NA          NA         NA      NA       NA   
+ 3 Beef and Buffalo M…              4.27       59.5      459.     61.3     40.8 
+ 4 Pig meat                         0.0314    107.       324.    102.     219.  
+ 5 Mutton and Goat Me…              0.0709      0        118.      2.83     3.62
+ 6 Poultry production               0           0          0       0        0   
+ 7 Poultry meat                    31.6        27.8     3889.     43.2   1625.  
+ 8 Total meat product…             36.0       195.      4789.    209.    1889.  
+ 9 2020                             0           0          0       0        0   
+10 Livestock producti…              0           0          0       0        0   
+# ℹ 22 more rows
 # ℹ 6 more variables: Myanmar &lt;dbl&gt;, Philippines &lt;dbl&gt;, Singapore &lt;dbl&gt;,
 #   Thailand &lt;dbl&gt;, `Viet Nam` &lt;dbl&gt;, ASEAN &lt;dbl&gt;</code></pre>
 </div>
 </div>
 </section>
-<section id="tidy-the-meat-production-data" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="tidy-the-meat-production-data"><span class="header-section-number">2</span> 3.3 Tidy the Meat Production Data</h2>
+<section id="tidy-the-meat-production-data" class="level2">
+<h2 class="anchored" data-anchor-id="tidy-the-meat-production-data">3.3 Tidy the Meat Production Data</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>meat_tidy <span class="ot">&lt;-</span> meat_raw <span class="sc">%&gt;%</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">label =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
@@ -338,8 +355,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="correct-cambodias-mutton-and-goat-entries" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="correct-cambodias-mutton-and-goat-entries"><span class="header-section-number">3</span> 3.4 Correct Cambodia’s Mutton-and-Goat Entries</h2>
+<section id="correct-cambodias-mutton-and-goat-entries" class="level2">
+<h2 class="anchored" data-anchor-id="correct-cambodias-mutton-and-goat-entries">3.4 Correct Cambodia’s Mutton-and-Goat Entries</h2>
 <p>Justification (brief): we target exactly the four Cambodia + mutton-and-goat rows where the XLSX encodes missing “-” as numeric 0 for years 2018–2021, and replace only those values with <code>NA</code>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>meat_tidy <span class="ot">&lt;-</span> meat_tidy <span class="sc">%&gt;%</span></span>
@@ -368,8 +385,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="checkpoint-compare-meat_tidy-to-reference-data" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="checkpoint-compare-meat_tidy-to-reference-data"><span class="header-section-number">4</span> 3.5 Checkpoint: Compare <code>meat_tidy</code> to Reference Data</h2>
+<section id="checkpoint-compare-meat_tidy-to-reference-data" class="level2">
+<h2 class="anchored" data-anchor-id="checkpoint-compare-meat_tidy-to-reference-data">3.5 Checkpoint: Compare <code>meat_tidy</code> to Reference Data</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>meat_ref <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"meat_tidy_reference.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">compare</span>(meat_tidy, meat_ref, <span class="at">tolerance =</span> <span class="fl">1e-6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -378,8 +395,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="tidy-the-population-data" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="tidy-the-population-data"><span class="header-section-number">5</span> 3.6 Tidy the Population Data</h2>
+<section id="tidy-the-population-data" class="level2">
+<h2 class="anchored" data-anchor-id="tidy-the-population-data">3.6 Tidy the Population Data</h2>
 <p>Import sheet <code>I.1</code> (population in thousands), excluding the ASEAN aggregate row.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pop_raw <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(</span>
@@ -449,8 +466,8 @@ window.Quarto = {
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># so a trailing space in "Malaysia " is typically removed during import.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="checkpoint-compare-pop_tidy-to-reference-data" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="checkpoint-compare-pop_tidy-to-reference-data"><span class="header-section-number">6</span> 3.7 Checkpoint: Compare <code>pop_tidy</code> to Reference Data</h2>
+<section id="checkpoint-compare-pop_tidy-to-reference-data" class="level2">
+<h2 class="anchored" data-anchor-id="checkpoint-compare-pop_tidy-to-reference-data">3.7 Checkpoint: Compare <code>pop_tidy</code> to Reference Data</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>pop_ref <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"population_tidy_reference.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">compare</span>(pop_tidy, pop_ref, <span class="at">tolerance =</span> <span class="fl">1e-6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -459,8 +476,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="join-meat-production-to-population" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="join-meat-production-to-population"><span class="header-section-number">7</span> 3.8 Join Meat Production to Population</h2>
+<section id="join-meat-production-to-population" class="level2">
+<h2 class="anchored" data-anchor-id="join-meat-production-to-population">3.8 Join Meat Production to Population</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>merged <span class="ot">&lt;-</span> meat_tidy <span class="sc">%&gt;%</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(pop_tidy, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"country"</span>, <span class="st">"year"</span>)) <span class="sc">%&gt;%</span></span>
@@ -476,8 +493,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="derive-per-capita-production" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="derive-per-capita-production"><span class="header-section-number">8</span> 3.9 Derive Per-Capita Production</h2>
+<section id="derive-per-capita-production" class="level2">
+<h2 class="anchored" data-anchor-id="derive-per-capita-production">3.9 Derive Per-Capita Production</h2>
 <p>Production is in thousand metric tons; population is in thousand persons. Thus <span class="math inline">\((\text{production}/\text{pop})\)</span> is metric tons per person; multiply by 1000 to get kg per person.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>merged <span class="ot">&lt;-</span> merged <span class="sc">%&gt;%</span></span>
@@ -497,8 +514,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="checkpoint-compare-merged-to-reference-data" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="checkpoint-compare-merged-to-reference-data"><span class="header-section-number">9</span> 3.10 Checkpoint: Compare <code>merged</code> to Reference Data</h2>
+<section id="checkpoint-compare-merged-to-reference-data" class="level2">
+<h2 class="anchored" data-anchor-id="checkpoint-compare-merged-to-reference-data">3.10 Checkpoint: Compare <code>merged</code> to Reference Data</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>merged_ref <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"merged_reference.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">compare</span>(merged, merged_ref, <span class="at">tolerance =</span> <span class="fl">1e-6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -507,8 +524,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="visualize-the-result" class="level2" data-number="10">
-<h2 data-number="10" class="anchored" data-anchor-id="visualize-the-result"><span class="header-section-number">10</span> 3.11 Visualize the Result</h2>
+<section id="visualize-the-result" class="level2">
+<h2 class="anchored" data-anchor-id="visualize-the-result">3.11 Visualize the Result</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  merged,</span>
@@ -543,20 +560,20 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="comment-on-the-plot" class="level2" data-number="11">
-<h2 data-number="11" class="anchored" data-anchor-id="comment-on-the-plot"><span class="header-section-number">11</span> 3.12 Comment on the Plot</h2>
+<section id="comment-on-the-plot" class="level2">
+<h2 class="anchored" data-anchor-id="comment-on-the-plot">3.12 Comment on the Plot</h2>
 <p>(Write 1+ noteworthy feature and cite a credible source that helps interpret it.)</p>
 </section>
-<section id="reflect-on-ai-use" class="level2" data-number="12">
-<h2 data-number="12" class="anchored" data-anchor-id="reflect-on-ai-use"><span class="header-section-number">12</span> 4.1 Reflect on AI Use</h2>
+<section id="reflect-on-ai-use" class="level2">
+<h2 class="anchored" data-anchor-id="reflect-on-ai-use">4.1 Reflect on AI Use</h2>
 <ul>
 <li>Tool used: (fill in)</li>
 <li>One useful AI suggestion: (fill in)</li>
 <li>One AI response that was wrong/incompatible/etc. and how the team corrected it: (fill in)</li>
 </ul>
 </section>
-<section id="roles-and-contributions" class="level2" data-number="13">
-<h2 data-number="13" class="anchored" data-anchor-id="roles-and-contributions"><span class="header-section-number">13</span> 4.2 Roles and Contributions</h2>
+<section id="roles-and-contributions" class="level2">
+<h2 class="anchored" data-anchor-id="roles-and-contributions">4.2 Roles and Contributions</h2>
 <ul>
 <li>Member A (Coder): …</li>
 <li>Member B (Navigator + Verifier): …</li>

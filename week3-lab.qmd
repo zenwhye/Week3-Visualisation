@@ -3,7 +3,7 @@ title: "Week 03 Lab: Tidying ASEAN Meat-Production Data"
 format:
   html:
     toc: true
-    number-sections: true
+    number-sections: false
 execute:
   echo: true
   warning: false
@@ -18,33 +18,33 @@ library(waldo)
 ```
 
 
-# Summary of Team Predictions (Sheet X.14)
+## 3.1 Summary of Team Predictions (Sheet X.14)
 
-As the Team Reporter, I have compiled the predictions from Jun Lum, ben, Bryan, and Zen regarding the tidying of sheet X.14. 
+As the Team Reporter, I have compiled the predictions from Jun Lum, Benjamin, Bryan, and Zen regarding the tidying of sheet X.14. 
 
-### Columns, Classes, and Row Counts
+### Part A & B: Columns, Classes, and Row Counts
 
 The table below summarizes the team's expectations for the final tidy dataset structure.
 
 | Member | Expected Columns & Classes | Expected Rows | Reasoning / Formula |
 | :--- | :--- | :--- | :--- |
 | **Jun Lum** | Country (Char), Animal Type (Char), Year (Num), Production (Num) | 160 | $10 \text{ countries} \times 4 \text{ years} \times 4 \text{ animal types}$ |
-| **ben** | Country (Char), Animal Type (Char), Year (Num), Production (Num) | 160 | $10 \text{ countries} \times 4 \text{ years} \times 4 \text{ animal types}$ |
+| **Benjamin** | Country (Char), Animal Type (Char), Year (Num), Production (Num) | 160 | $10 \text{ countries} \times 4 \text{ years} \times 4 \text{ animal types}$ |
 | **Bryan** | Country (Char), Animal Type (Char), Year (Num), Production (Num) | 160 | $10 \text{ countries} \times 4 \text{ years} \times 4 \text{ animal types}$ |
 | **Zen** | Country (Char), Animal Type (Char), Year (Num), Production (Num) | 160 | $10 \text{ countries} \times 4 \text{ years} \times 4 \text{ animal types}$ |
 
 ---
 
-### Why Sheet X.14 is Untidy
+### Part C: Why is Sheet X.14 not tidy
 
 The team identified several distinct violations of tidy data principles in the current layout:
 
 *   **Structural Misplacement of Variables:** 
     *   **Years:** Jun Lum and Zen identified years acting as column headers, whereas ben and Bryan noted that years are serving as section labels/stacked within rows. 
     *   **Headers:** Jun Lum noted individual country names are being used as column headers.
-*   **Mixing Data Levels (Raw vs. Aggregated):** Jun Lum, ben, and Zen all noted that summary columns/rows (e.g., the **ASEAN total column**) are mixed directly into the raw data.
+*   **Mixing Data Levels (Raw vs. Aggregated):** Jun Lum, Benjamin, and Zen all noted that summary columns/rows (e.g., the **ASEAN total column**) are mixed directly into the raw data.
 *   **Data Quality & Redundancy:** 
-    *   ben pointed out that "Poultry" rows contain no data and should be removed entirely.
+    *   Benjamin pointed out that "Poultry" rows contain no data and should be removed entirely.
     *   Bryan noted that missing values are represented inconsistently using symbols like `-`.
 
 ---
