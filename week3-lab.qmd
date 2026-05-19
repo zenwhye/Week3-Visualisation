@@ -17,30 +17,84 @@ library(readxl)
 library(waldo)
 ```
 
-## 3.1 Think Before Prompting (Team Predictions)
 
-### a) Columns and classes
+### Jun Lum
 
-| Column | Class | Example |
-|---|---|---|
-| country | character | "Brunei Darussalam" |
-| animal | character | "beef and buffalo" |
-| year | numeric | 2021 |
-| production | numeric | 4.26741 |
+  skip = 3
 
-### b) Expected number of rows
+- `country` (character)
+- `animal` / animal type (character)
+- `year` (numeric)
+- `production` (numeric)
 
-We expect:
+**b) Expected number of rows**
 
 $10 \text{ countries} \times 4 \text{ years} \times 4 \text{ animal types} = 160$ rows.
 
-Rationale: each observation corresponds to one country–animal–year combination with one production value.
+**c) Why sheet X.14 is not tidy**
 
-### c) Why sheet X.14 is not tidy
+- Years are used as a header row (not a `year` column).
+- Country names appear as column headers (not a `country` column).
+- Total rows mix raw data with summary data.
 
-- Years are used as column headers rather than values in a single `year` column.
-- The layout uses country names / animal groupings as structural labels rather than explicit variables stored in columns.
-- The sheet mixes raw observations with redundant aggregate information (e.g., ASEAN aggregate column and total rows).
+### Ben
+
+**a) Columns and classes**
+  rename(country = 1) %>%
+  select(where(~ !all(is.na(.x)))) %>%
+  mutate(country = str_squish(as.character(country))) %>%
+  filter(!is.na(country), country != "", country != "ASEAN") %>%
+  pivot_longer(
+    cols = -country,
+    names_to = "year",
+    values_to = "pop"
+  ) %>%
+  mutate(
+    year = as.numeric(year),
+    pop = as.numeric(pop)
+  ) %>%
+**a) Columns and classes**
+
+- `animal` / animal type (character)
+- `year` (numeric)
+- `country` (character)
+- `production` (numeric)
+
+**b) Expected number of rows**
+
+$10 \times 4 \times 4 = 160$ rows.
+
+**c) Why sheet X.14 is not tidy**
+
+- Years are used as section labels in rows instead of being stored in a proper `year` column.
+- Animal type is mixed with category headings and totals.
+- Missing values are represented using symbols like `-`.
+
+### Zen
+
+**a) Columns and classes**
+
+- `country` (character)
+- `animal` / animal type (character)
+- `year` (numeric)
+- `production` (numeric)
+
+**b) Expected number of rows**
+
+$10 \text{ countries} \times 4 \text{ years} \times 4 \text{ animal types} = 160$ rows.
+
+**c) Why sheet X.14 is not tidy**
+
+- Years are encoded as column headers rather than values.
+- Country names and animal groupings are embedded in the layout rather than explicit variables.
+- The sheet includes totals/aggregates alongside raw values.
+
+### Reporter summary (team)
+
+- **Agreed tidy variables:** `country` (character), `animal` (character), `year` (numeric), `production` (numeric).
+- **Agreed row count:** 160 rows ($10 \times 4 \times 4$).
+- **Agreed non-tidy issues:** header-encoded years, layout-encoded variables, and mixing summary totals (ASEAN/Total) with raw observations.
+- **Discrepancies to resolve during cleaning:** Ben expects poultry to have no data and be removable; others treat poultry as one of the four animal categories required by the task. Bryan notes missing values shown as `-` in the source.
 
 ## 3.2 Import the ASEAN Meat Production Data
 
@@ -48,11 +102,10 @@ Open `ASEAN-Statistical-Yearbook-2023.xlsx` and identify the cell range containi
 
 ```{r}
 #| label: import-meat
-# TODO: Replace `range` with the exact rectangle containing the table.
 meat_raw <- read_xlsx(
   path = "ASEAN-Statistical-Yearbook-2023.xlsx",
   sheet = "X.14",
-  range = "A1:Z99" 
+  skip = 3
 )
 
 meat_raw
@@ -62,48 +115,44 @@ meat_raw
 
 ```{r}
 #| label: tidy-meat
-# TODO: Adjust the renaming/selection logic to match the actual column names in `meat_raw`.
-# The goal is: country, animal, year, production.
-
 meat_tidy <- meat_raw %>%
-  # Common pattern for this sheet:
-  # 1) An 'animal' label column that needs fill-down
-  # 2) A 'country' column
-  # 3) Year columns 2018-2021 that need pivot_longer
-  rename_with(~ str_trim(.x)) %>%
-  rename_with(~ str_replace_all(.x, "\\s+", " ")) %>%
-  rename_with(tolower) %>%
-  # If needed, rename the first two columns to animal/country:
-  rename(
-    animal = 1,
-    country = 2
-  ) %>%
-  fill(animal) %>%
+  rename(label = 1) %>%
+  select(where(~ !all(is.na(.x)))) %>%
+  select(-any_of("ASEAN")) %>%
   mutate(
-    animal = str_to_lower(animal)
+    label = str_squish(as.character(label)),
+    year = as.numeric(if_else(
+      str_detect(label, "^\\d{4}$"),
+      label,
+      NA_character_
+    ))
   ) %>%
-  pivot_longer(
-    cols = -c(country, animal),
-    names_to = "year",
-    values_to = "production"
-  ) %>%
+  fill(year, .direction = "down") %>%
   mutate(
-    year = as.numeric(year),
-    production = as.numeric(production)
-  ) %>%
-  # Keep only the required animals (exact strings) and years:
-  filter(year %in% 2018:2021) %>%
-  mutate(
-    animal = recode(
-      animal,
-      "beef and buffaloes" = "beef and buffalo",
-      .default = animal
+    label_lower = str_to_lower(label),
+    animal = case_when(
+      str_detect(label_lower, "beef") &
+        str_detect(label_lower, "buffalo") ~ "beef and buffalo",
+      str_detect(label_lower, "^pig") ~ "pig",
+      str_detect(label_lower, "mutton") |
+        str_detect(label_lower, "goat") ~ "mutton and goat",
+      str_detect(label_lower, "^poultry") &
+        !str_detect(label_lower, "production") ~ "poultry",
+      TRUE ~ NA_character_
     )
   ) %>%
-  filter(animal %in% c("beef and buffalo", "mutton and goat", "pig", "poultry")) %>%
-  # Drop redundant aggregate/total entries (may need adjustment based on actual sheet text):
-  filter(country != "ASEAN") %>%
-  filter(country != "Total meat production") %>%
+  select(-label_lower) %>%
+  filter(!is.na(animal), year %in% 2018:2021) %>%
+  pivot_longer(
+    cols = -c(label, year, animal),
+    names_to = "country",
+    values_to = "production",
+    values_transform = list(production = as.character)
+  ) %>%
+  mutate(
+    country = str_squish(country),
+    production = readr::parse_number(production, na = c("-", ""))
+  ) %>%
   arrange(desc(year), animal, country) %>%
   select(country, animal, year, production)
 
@@ -148,15 +197,14 @@ compare(meat_tidy, meat_ref, tolerance = 1e-6)
 
 ## 3.6 Tidy the Population Data
 
-Open the XLSX and identify the cell range containing the table in sheet `I.1` (exclude the ASEAN aggregate row).
+Import sheet `I.1` (population in thousands), excluding the ASEAN aggregate row.
 
 ```{r}
 #| label: import-pop
-# TODO: Replace `range` with the exact rectangle containing the table.
 pop_raw <- read_xlsx(
   path = "ASEAN-Statistical-Yearbook-2023.xlsx",
   sheet = "I.1",
-  range = "A1:Z99"
+  skip = 4
 )
 
 pop_raw
@@ -165,11 +213,14 @@ pop_raw
 ```{r}
 #| label: tidy-pop
 pop_tidy <- pop_raw %>%
-  rename_with(~ str_trim(.x)) %>%
-  rename_with(~ str_replace_all(.x, "\\s+", " ")) %>%
-  rename_with(tolower) %>%
   rename(country = 1) %>%
-  filter(country != "ASEAN") %>%
+  select(where(~ !all(is.na(.x)))) %>%
+  mutate(country = str_squish(as.character(country))) %>%
+  filter(!is.na(country), country != "", country != "ASEAN") %>%
+  filter(
+    !str_detect(country, "^Source"),
+    !str_detect(country, "ASEAN Secretariat")
+  ) %>%
   pivot_longer(
     cols = -country,
     names_to = "year",
@@ -179,6 +230,7 @@ pop_tidy <- pop_raw %>%
     year = as.numeric(year),
     pop = as.numeric(pop)
   ) %>%
+  filter(year %in% 2013:2022) %>%
   arrange(desc(year), country) %>%
   select(country, year, pop)
 
@@ -236,8 +288,6 @@ compare(merged, merged_ref, tolerance = 1e-6)
 
 ```{r}
 #| label: plot
-
-
 ggplot(
   merged,
   aes(x = year, y = meat_per_cap, color = animal)
