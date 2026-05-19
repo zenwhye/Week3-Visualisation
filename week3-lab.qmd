@@ -65,7 +65,7 @@ Open `ASEAN-Statistical-Yearbook-2023.xlsx` and identify the cell range containi
 meat_raw <- read_xlsx(
   path = "ASEAN-Statistical-Yearbook-2023.xlsx",
   sheet = "X.14",
-  skip = 3
+  range = "A4:L36"
 )
 
 meat_raw
