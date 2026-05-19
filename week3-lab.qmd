@@ -18,76 +18,36 @@ library(waldo)
 ```
 
 
-### Jun Lum
+# Summary of Team Predictions (Sheet X.14)
 
-  skip = 3
+As the Team Reporter, I have compiled the predictions from Jun Lum, ben, Bryan, and Zen regarding the tidying of sheet X.14. 
 
-- `country` (character)
-- `animal` / animal type (character)
-- `year` (numeric)
-- `production` (numeric)
+### Columns, Classes, and Row Counts
 
-**b) Expected number of rows**
+The table below summarizes the team's expectations for the final tidy dataset structure.
 
-$10 \text{ countries} \times 4 \text{ years} \times 4 \text{ animal types} = 160$ rows.
+| Member | Expected Columns & Classes | Expected Rows | Reasoning / Formula |
+| :--- | :--- | :--- | :--- |
+| **Jun Lum** | Country (Char), Animal Type (Char), Year (Num), Production (Num) | 160 | $10 \text{ countries} \times 4 \text{ years} \times 4 \text{ animal types}$ |
+| **ben** | Country (Char), Animal Type (Char), Year (Num), Production (Num) | 160 | $10 \text{ countries} \times 4 \text{ years} \times 4 \text{ animal types}$ |
+| **Bryan** | Country (Char), Animal Type (Char), Year (Num), Production (Num) | 160 | $10 \text{ countries} \times 4 \text{ years} \times 4 \text{ animal types}$ |
+| **Zen** | Country (Char), Animal Type (Char), Year (Num), Production (Num) | 160 | $10 \text{ countries} \times 4 \text{ years} \times 4 \text{ animal types}$ |
 
-**c) Why sheet X.14 is not tidy**
+---
 
-- Years are used as a header row (not a `year` column).
-- Country names appear as column headers (not a `country` column).
-- Total rows mix raw data with summary data.
+### Why Sheet X.14 is Untidy
 
-### Ben
+The team identified several distinct violations of tidy data principles in the current layout:
 
-**a) Columns and classes**
-  rename(country = 1) %>%
-  select(where(~ !all(is.na(.x)))) %>%
-  mutate(country = str_squish(as.character(country))) %>%
-  filter(!is.na(country), country != "", country != "ASEAN") %>%
-  pivot_longer(
-    cols = -country,
-    names_to = "year",
-    values_to = "pop"
-  ) %>%
-  mutate(
-    year = as.numeric(year),
-    pop = as.numeric(pop)
-  ) %>%
-**a) Columns and classes**
+*   **Structural Misplacement of Variables:** 
+    *   **Years:** Jun Lum and Zen identified years acting as column headers, whereas ben and Bryan noted that years are serving as section labels/stacked within rows. 
+    *   **Headers:** Jun Lum noted individual country names are being used as column headers.
+*   **Mixing Data Levels (Raw vs. Aggregated):** Jun Lum, ben, and Zen all noted that summary columns/rows (e.g., the **ASEAN total column**) are mixed directly into the raw data.
+*   **Data Quality & Redundancy:** 
+    *   ben pointed out that "Poultry" rows contain no data and should be removed entirely.
+    *   Bryan noted that missing values are represented inconsistently using symbols like `-`.
 
-- `animal` / animal type (character)
-- `year` (numeric)
-- `country` (character)
-- `production` (numeric)
-
-**b) Expected number of rows**
-
-$10 \times 4 \times 4 = 160$ rows.
-
-**c) Why sheet X.14 is not tidy**
-
-- Years are used as section labels in rows instead of being stored in a proper `year` column.
-- Animal type is mixed with category headings and totals.
-- Missing values are represented using symbols like `-`.
-
-### Zen
-
-**a) Columns and classes**
-
-- `country` (character)
-- `animal` / animal type (character)
-- `year` (numeric)
-- `production` (numeric)
-
-**b) Expected number of rows**
-
-$10 \text{ countries} \times 4 \text{ years} \times 4 \text{ animal types} = 160$ rows.
-
-**c) Why sheet X.14 is not tidy**
-
-- Years are encoded as column headers rather than values.
-- Country names and animal groupings are embedded in the layout rather than explicit variables.
-- The sheet includes totals/aggregates alongside raw values.
+---
 
 ### Reporter summary (team)
 
