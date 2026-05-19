@@ -276,7 +276,9 @@ ggplot(
 
 ## 3.12 Comment on the Plot
 
-(Write 1+ noteworthy feature and cite a credible source that helps interpret it.)
+**Noteworthy Feature:** One striking feature in the plot is the sharp decline in **pig meat production** (the teal line) in the **Philippines** between 2019 and 2021. While the production of poultry and beef in the country remains relatively flat and stable on the log scale, per-capita pig production drops significantly during this two-year window.
+
+**Interpretation & Source:** This steep, isolated decline is the result of the **African Swine Fever (ASF)** outbreak. ASF was first confirmed in the Philippines in the second half of 2019. The highly contagious viral disease decimated local swine populations, leading to massive culling efforts by the government and a drastic reduction in domestic pork output over the following years. *(Source: USDA Foreign Agricultural Service reports on Philippine Livestock; FAO situation updates on ASF in Asia).*
 
 ## 4.1 Reflect on AI Use
 
