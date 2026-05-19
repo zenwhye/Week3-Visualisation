@@ -1,0 +1,282 @@
+---
+title: "Week 03 Lab: Tidying ASEAN Meat-Production Data"
+format:
+  html:
+    toc: true
+    number-sections: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+library(tidyverse)
+library(readxl)
+library(waldo)
+```
+
+## 3.1 Think Before Prompting (Team Predictions)
+
+### a) Columns and classes
+
+| Column | Class | Example |
+|---|---|---|
+| country | character | "Brunei Darussalam" |
+| animal | character | "beef and buffalo" |
+| year | numeric | 2021 |
+| production | numeric | 4.26741 |
+
+### b) Expected number of rows
+
+We expect:
+
+$10 \text{ countries} \times 4 \text{ years} \times 4 \text{ animal types} = 160$ rows.
+
+Rationale: each observation corresponds to one country–animal–year combination with one production value.
+
+### c) Why sheet X.14 is not tidy
+
+- Years are used as column headers rather than values in a single `year` column.
+- The layout uses country names / animal groupings as structural labels rather than explicit variables stored in columns.
+- The sheet mixes raw observations with redundant aggregate information (e.g., ASEAN aggregate column and total rows).
+
+## 3.2 Import the ASEAN Meat Production Data
+
+Open `ASEAN-Statistical-Yearbook-2023.xlsx` and identify the cell range containing the table in sheet `X.14`.
+
+```{r}
+#| label: import-meat
+# TODO: Replace `range` with the exact rectangle containing the table.
+meat_raw <- read_xlsx(
+  path = "ASEAN-Statistical-Yearbook-2023.xlsx",
+  sheet = "X.14",
+  range = "A1:Z99" 
+)
+
+meat_raw
+```
+
+## 3.3 Tidy the Meat Production Data
+
+```{r}
+#| label: tidy-meat
+# TODO: Adjust the renaming/selection logic to match the actual column names in `meat_raw`.
+# The goal is: country, animal, year, production.
+
+meat_tidy <- meat_raw %>%
+  # Common pattern for this sheet:
+  # 1) An 'animal' label column that needs fill-down
+  # 2) A 'country' column
+  # 3) Year columns 2018-2021 that need pivot_longer
+  rename_with(~ str_trim(.x)) %>%
+  rename_with(~ str_replace_all(.x, "\\s+", " ")) %>%
+  rename_with(tolower) %>%
+  # If needed, rename the first two columns to animal/country:
+  rename(
+    animal = 1,
+    country = 2
+  ) %>%
+  fill(animal) %>%
+  mutate(
+    animal = str_to_lower(animal)
+  ) %>%
+  pivot_longer(
+    cols = -c(country, animal),
+    names_to = "year",
+    values_to = "production"
+  ) %>%
+  mutate(
+    year = as.numeric(year),
+    production = as.numeric(production)
+  ) %>%
+  # Keep only the required animals (exact strings) and years:
+  filter(year %in% 2018:2021) %>%
+  mutate(
+    animal = recode(
+      animal,
+      "beef and buffaloes" = "beef and buffalo",
+      .default = animal
+    )
+  ) %>%
+  filter(animal %in% c("beef and buffalo", "mutton and goat", "pig", "poultry")) %>%
+  # Drop redundant aggregate/total entries (may need adjustment based on actual sheet text):
+  filter(country != "ASEAN") %>%
+  filter(country != "Total meat production") %>%
+  arrange(desc(year), animal, country) %>%
+  select(country, animal, year, production)
+
+meat_tidy %>% slice_head(n = 6)
+meat_tidy %>% slice_tail(n = 6)
+
+# Verifier checks
+nrow(meat_tidy)
+meat_tidy %>% distinct(animal) %>% arrange(animal)
+```
+
+## 3.4 Correct Cambodia’s Mutton-and-Goat Entries
+
+Justification (brief): we target exactly the four Cambodia + mutton-and-goat rows where the XLSX encodes missing “-” as numeric 0 for years 2018–2021, and replace only those values with `NA`.
+
+```{r}
+#| label: cambodia-fix
+meat_tidy <- meat_tidy %>%
+  mutate(
+    production = if_else(
+      country == "Cambodia" &
+        animal == "mutton and goat" &
+        year %in% 2018:2021 &
+        production == 0,
+      NA_real_,
+      production
+    )
+  )
+
+meat_tidy %>%
+  filter(country == "Cambodia", animal == "mutton and goat") %>%
+  arrange(desc(year))
+```
+
+## 3.5 Checkpoint: Compare `meat_tidy` to Reference Data
+
+```{r}
+#| label: compare-meat
+meat_ref <- read_csv("meat_tidy_reference.csv", show_col_types = FALSE)
+compare(meat_tidy, meat_ref, tolerance = 1e-6)
+```
+
+## 3.6 Tidy the Population Data
+
+Open the XLSX and identify the cell range containing the table in sheet `I.1` (exclude the ASEAN aggregate row).
+
+```{r}
+#| label: import-pop
+# TODO: Replace `range` with the exact rectangle containing the table.
+pop_raw <- read_xlsx(
+  path = "ASEAN-Statistical-Yearbook-2023.xlsx",
+  sheet = "I.1",
+  range = "A1:Z99"
+)
+
+pop_raw
+```
+
+```{r}
+#| label: tidy-pop
+pop_tidy <- pop_raw %>%
+  rename_with(~ str_trim(.x)) %>%
+  rename_with(~ str_replace_all(.x, "\\s+", " ")) %>%
+  rename_with(tolower) %>%
+  rename(country = 1) %>%
+  filter(country != "ASEAN") %>%
+  pivot_longer(
+    cols = -country,
+    names_to = "year",
+    values_to = "pop"
+  ) %>%
+  mutate(
+    year = as.numeric(year),
+    pop = as.numeric(pop)
+  ) %>%
+  arrange(desc(year), country) %>%
+  select(country, year, pop)
+
+pop_tidy %>% slice_head(n = 6)
+
+# Verifier note: read_xlsx() trims whitespace by default (trim_ws = TRUE),
+# so a trailing space in "Malaysia " is typically removed during import.
+```
+
+## 3.7 Checkpoint: Compare `pop_tidy` to Reference Data
+
+```{r}
+#| label: compare-pop
+pop_ref <- read_csv("population_tidy_reference.csv", show_col_types = FALSE)
+compare(pop_tidy, pop_ref, tolerance = 1e-6)
+```
+
+## 3.8 Join Meat Production to Population
+
+```{r}
+#| label: join
+merged <- meat_tidy %>%
+  left_join(pop_tidy, by = c("country", "year")) %>%
+  select(country, animal, year, production, pop)
+
+# Verifier: ensure row ordering matches meat_tidy
+identical(
+  merged %>% select(country, animal, year),
+  meat_tidy %>% select(country, animal, year)
+)
+```
+
+## 3.9 Derive Per-Capita Production
+
+Production is in thousand metric tons; population is in thousand persons.
+Thus $(\text{production}/\text{pop})$ is metric tons per person; multiply by 1000 to get kg per person.
+
+```{r}
+#| label: per-capita
+merged <- merged %>%
+  mutate(meat_per_cap = production / pop * 1000)
+
+merged %>% slice_head(n = 6)
+```
+
+## 3.10 Checkpoint: Compare `merged` to Reference Data
+
+```{r}
+#| label: compare-merged
+merged_ref <- read_csv("merged_reference.csv", show_col_types = FALSE)
+compare(merged, merged_ref, tolerance = 1e-6)
+```
+
+## 3.11 Visualize the Result
+
+```{r}
+#| label: plot
+
+
+ggplot(
+  merged,
+  aes(x = year, y = meat_per_cap, color = animal)
+) +
+  geom_line() +
+  geom_point() +
+  labs(
+    x = NULL,
+    y = "Production (kg per person)",
+    color = "Animal",
+    title = "Per-Capita Meat Production in ASEAN, 2018–2021",
+    caption = "Source: ASEAN Statistical Yearbook 2023"
+  ) +
+  xlim(2017.9, 2021.1) +
+  scale_y_log10(
+    breaks = c(0.01, 0.1, 1, 10, 100),
+    labels = c("0.01", "0.1", "1", "10", "100")
+  ) +
+  facet_wrap(~country) +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(1, 0),
+    legend.justification.inside = c(1, 0.05)
+  )
+```
+
+## 3.12 Comment on the Plot
+
+(Write 1+ noteworthy feature and cite a credible source that helps interpret it.)
+
+## 4.1 Reflect on AI Use
+
+- Tool used: (fill in)
+- One useful AI suggestion: (fill in)
+- One AI response that was wrong/incompatible/etc. and how the team corrected it: (fill in)
+
+## 4.2 Roles and Contributions
+
+- Member A (Coder): …
+- Member B (Navigator + Verifier): …
+- Member C (Constructive Critic + Reporter): …
+- Member D (AI Liaison): …
