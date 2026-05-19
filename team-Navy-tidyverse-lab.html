@@ -61,17 +61,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="week3-lab_files/libs/clipboard/clipboard.min.js"></script>
-<script src="week3-lab_files/libs/quarto-html/quarto.js" type="module"></script>
-<script src="week3-lab_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="week3-lab_files/libs/quarto-html/popper.min.js"></script>
-<script src="week3-lab_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="week3-lab_files/libs/quarto-html/anchor.min.js"></script>
-<link href="week3-lab_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="week3-lab_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="week3-lab_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="week3-lab_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="week3-lab_files/libs/bootstrap/bootstrap-efbb37e9afcc02144ebbc7afd12a776f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="team-Navy-tidyverse-lab_files/libs/clipboard/clipboard.min.js"></script>
+<script src="team-Navy-tidyverse-lab_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="team-Navy-tidyverse-lab_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="team-Navy-tidyverse-lab_files/libs/quarto-html/popper.min.js"></script>
+<script src="team-Navy-tidyverse-lab_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="team-Navy-tidyverse-lab_files/libs/quarto-html/anchor.min.js"></script>
+<link href="team-Navy-tidyverse-lab_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="team-Navy-tidyverse-lab_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="team-Navy-tidyverse-lab_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="team-Navy-tidyverse-lab_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="team-Navy-tidyverse-lab_files/libs/bootstrap/bootstrap-efbb37e9afcc02144ebbc7afd12a776f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -554,7 +554,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="week3-lab_files/figure-html/plot-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="team-Navy-tidyverse-lab_files/figure-html/plot-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -562,23 +562,24 @@ window.Quarto = {
 </section>
 <section id="comment-on-the-plot" class="level2">
 <h2 class="anchored" data-anchor-id="comment-on-the-plot">3.12 Comment on the Plot</h2>
-<p>(Write 1+ noteworthy feature and cite a credible source that helps interpret it.)</p>
+<p><strong>Noteworthy Feature:</strong> One striking feature in the plot is the sharp decline in <strong>pig meat production</strong> (the teal line) in the <strong>Philippines</strong> between 2019 and 2021. While the production of poultry and beef in the country remains relatively flat and stable on the log scale, per-capita pig production drops significantly during this two-year window.</p>
+<p><strong>Interpretation &amp; Source:</strong> This steep, isolated decline is the result of the <strong>African Swine Fever (ASF)</strong> outbreak. ASF was first confirmed in the Philippines in the second half of 2019. The highly contagious viral disease decimated local swine populations, leading to massive culling efforts by the government and a drastic reduction in domestic pork output over the following years. <em>(Source: USDA Foreign Agricultural Service reports on Philippine Livestock; FAO situation updates on ASF in Asia).</em></p>
 </section>
 <section id="reflect-on-ai-use" class="level2">
 <h2 class="anchored" data-anchor-id="reflect-on-ai-use">4.1 Reflect on AI Use</h2>
 <ul>
-<li>Tool used: (fill in)</li>
-<li>One useful AI suggestion: (fill in)</li>
-<li>One AI response that was wrong/incompatible/etc. and how the team corrected it: (fill in)</li>
+<li>Tool used: ChatGPT (OpenAI)</li>
+<li>One useful AI suggestion: One of the most valuable suggestions provided by the AI was the architectural approach for handling the multi-tiered row layout in Section 3.3. Instead of forcing manual data splits for each block of data, the Assistant recommended a dynamic strategy using string manipulation and down-filling. By combining str_detect(label, “^\d{4}$”) to dynamically isolate year milestones into a new column, and pairing it with fill(year, .direction = “down”), the team successfully transformed structural spreadsheet labels into clean contextual variables. This allowed the entire sequence of cleaning and unpivoting to happen dynamically within a singular, efficient tidyverse pipeline.</li>
+<li>One AI response that was wrong/incompatible/etc. and how the team corrected it: While the Assistant provided excellent structural templates, it struggled with dataset-specific anomalies that required manual data auditing. Specifically, the AI completely overlooked an issue involving Cambodia’s livestock records in Sheet X.14. Under the wide layout, the fields representing Cambodia’s mutton and goat production from 2018 to 2021 were initially parsed as 0. Because 0 is a valid number, the AI implicitly accepted it as actual production. However, by cross-referencing the cleaned dataset against the raw sheet matrix and testing it using a strict validation check (compare()), the team realized these values were supposed to indicate missing/uncollected data, not zero production. The team caught this subtle contextual error and corrected it manually by injecting a tailored conditional replacement step. This experience highlighted that while the AI is highly effective for building the scaffolding of functional code syntax, rigorous human review and reference-data validation remain essential for ensuring analytical accuracy.</li>
 </ul>
 </section>
 <section id="roles-and-contributions" class="level2">
 <h2 class="anchored" data-anchor-id="roles-and-contributions">4.2 Roles and Contributions</h2>
 <ul>
-<li>Member A (Coder): …</li>
-<li>Member B (Navigator + Verifier): …</li>
-<li>Member C (Constructive Critic + Reporter): …</li>
-<li>Member D (AI Liaison): …</li>
+<li>Member A (Coder): Chue Zen Whye</li>
+<li>Member B (Navigator + Verifier): Chan Jun Lum</li>
+<li>Member C (Constructive Critic + Reporter): Lim Wei Zhe Bryan</li>
+<li>Member D (AI Liaison): Tan Jie Ming, Benjamin</li>
 </ul>
 </section>
 

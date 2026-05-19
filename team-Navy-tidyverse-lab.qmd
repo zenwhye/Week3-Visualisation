@@ -282,13 +282,13 @@ ggplot(
 
 ## 4.1 Reflect on AI Use
 
-- Tool used: (fill in)
-- One useful AI suggestion: (fill in)
-- One AI response that was wrong/incompatible/etc. and how the team corrected it: (fill in)
+- Tool used: ChatGPT (OpenAI)
+- One useful AI suggestion: One of the most valuable suggestions provided by the AI was the architectural approach for handling the multi-tiered row layout in Section 3.3. Instead of forcing manual data splits for each block of data, the Assistant recommended a dynamic strategy using string manipulation and down-filling. By combining str_detect(label, "^\\d{4}$") to dynamically isolate year milestones into a new column, and pairing it with fill(year, .direction = "down"), the team successfully transformed structural spreadsheet labels into clean contextual variables. This allowed the entire sequence of cleaning and unpivoting to happen dynamically within a singular, efficient tidyverse pipeline.
+- One AI response that was wrong/incompatible/etc. and how the team corrected it: While the Assistant provided excellent structural templates, it struggled with dataset-specific anomalies that required manual data auditing. Specifically, the AI completely overlooked an issue involving Cambodia's livestock records in Sheet X.14. Under the wide layout, the fields representing Cambodia’s mutton and goat production from 2018 to 2021 were initially parsed as 0. Because 0 is a valid number, the AI implicitly accepted it as actual production. However, by cross-referencing the cleaned dataset against the raw sheet matrix and testing it using a strict validation check (compare()), the team realized these values were supposed to indicate missing/uncollected data, not zero production. The team caught this subtle contextual error and corrected it manually by injecting a tailored conditional replacement step. This experience highlighted that while the AI is highly effective for building the scaffolding of functional code syntax, rigorous human review and reference-data validation remain essential for ensuring analytical accuracy.
 
 ## 4.2 Roles and Contributions
 
 - Member A (Coder): Chue Zen Whye
 - Member B (Navigator + Verifier): Chan Jun Lum
 - Member C (Constructive Critic + Reporter): Lim Wei Zhe Bryan
-- Member D (AI Liaison): Tan Jie Ming. Benjamin
+- Member D (AI Liaison): Tan Jie Ming, Benjamin

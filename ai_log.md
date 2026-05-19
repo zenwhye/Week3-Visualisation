@@ -1,4 +1,4 @@
-# ai.md
+# ai_log.md
 
 ## AI Tool Used
 ChatGPT (OpenAI)
